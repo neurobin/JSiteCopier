@@ -8,7 +8,7 @@ Install:
 
 1.You can simply run the script jsitecopy in terminal or install it by running install.sh. Installing it will enable it to be run from menu (Network category) with mouse click.
 
-2. Whether you run either of them , you first need to give them execution permission.
+2.Whether you run either of them , you first need to give them execution permission.
 
 How To Use:
 -----------
