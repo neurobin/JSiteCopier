@@ -6,7 +6,7 @@ Shell script to copy an entire website
 Install:
 --------
 
-1.You can simply run the script jsitecopy in terminal or install it by running install.sh. Installing it will enable it to be run from menu (Network category) with mouse click.
+1.You can simply run the script jsitecopy in terminal or install it by running install.sh. Installing it will enable it to be run from menu (Network category) with mouse click or from terminal just by entering "jsitecopy" without any path.
 
 2.Whether you run either of them , you first need to give them execution permission.
 
@@ -26,5 +26,7 @@ Ex: ~/Downloads/New Site
 4.verbose mode means it will show output in terminal or put a log in a file in wget-log in your home directory
 
 5.interval means the time interval between each file download.
+
+6.This script runs wget which works in the background even after closing the terminal. If you want to close it, you have to run killall wget in a terminal (this will kill all wget instances).
 
 
