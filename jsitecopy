@@ -1,0 +1,90 @@
+#!/bin/bash
+BASEDIR=`dirname "${0}"`
+cd "$BASEDIR"
+if dpkg -s wget > /dev/null 
+then
+echo 
+else
+echo -e "\n*****wget isn't installed, trying to install*****\n"
+sudo apt-get -y install wget
+fi
+while true
+do
+read -e -p "Enter URL of the website you want to copy (include www and/or http/s): " url
+  if wget -q $url -O /dev/null
+  then
+      echo "$url is valid"
+
+break
+  else
+      echo -e "\n$url is invalid\n"
+  fi
+done
+while true
+do
+read -e -p "Enter directory path where you want to save it: " folder
+folder=${folder/\~/$HOME}
+if [ "$folder" == "" ]; then
+folder="$BASEDIR"
+echo "Saving into $folder"
+break
+else
+mkdir -p "$folder"
+if [ -d "$folder" ]; then
+break
+else
+echo -e "\nCouldn't create directory...\n"
+fi
+fi
+done
+read -e -p "Enter interval wait in seconds (default= 5): " sec
+if [[ $sec =~ ^[\-0-9]+$ ]] && (( sec >= 0)); then
+  sec=$sec
+else
+  sec=5
+fi
+secmin=`echo 0.5*$sec | bc`
+secmax=`echo 1.5*$sec | bc`
+echo "Interval wait will be randomized between $secmin ~ $secmax"
+read -e -p "Allow verbose mode (y/n)?: " verb
+if [ "$verb" == "y" ] || [ "$verb" == "Y" ]; then
+custom_option="--verbose"
+else
+custom_option="--no-verbose"
+fi
+read -e -p "Want to run this process in backgroud (y/n)?: " back
+if [ "$back" == "y" ] || [ "$back" == "Y" ]; then
+echo -e "\n***Starting in the background. You can close this window.***\n***Enter command 'killall wget' in any terminal to stop download.***\n"
+ wget $custom_option -b               \
+      --mirror                        \
+      --no-clobber                    \
+      --page-requisites               \
+      --adjust-extension              \
+      --convert-links                 \
+      --restrict-file-names=windows   \
+      --no-parent                     \
+      -e robots=off                   \
+      --wait=$sec                     \
+      --random-wait                   \
+      -U mozilla                      \
+      --directory-prefix="$folder"    \
+      --waitretry=$sec                \
+     $url &
+else
+echo -e "\n*****Starting wget process.*****\nIf you close this terminal it will run in the background.\n***Enter command 'killall wget' in any terminal to stop download.***\n"
+ wget $custom_option                  \
+      --mirror                        \
+      --no-clobber                    \
+      --page-requisites               \
+      --adjust-extension              \
+      --convert-links                 \
+      --restrict-file-names=windows   \
+      --no-parent                     \
+      -e robots=off                   \
+      --wait=$sec                     \
+      --random-wait                   \
+      -U mozilla                      \
+      --directory-prefix="$folder"    \
+      --waitretry=$sec                \
+     $url
+fi
