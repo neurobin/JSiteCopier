@@ -47,10 +47,11 @@ secmin=`echo 0.5*$sec | bc`
 secmax=`echo 1.5*$sec | bc`
 echo "Interval wait will be randomized between $secmin ~ $secmax"
 read -e -p "Allow verbose mode (y/n)?: " verb
+custom_option="--continue"
 if [ "$verb" == "y" ] || [ "$verb" == "Y" ]; then
-custom_option="--verbose"
+custom_option="$custom_option --verbose"
 else
-custom_option="--no-verbose"
+custom_option="$custom_option --no-verbose"
 fi
 read -e -p "Want to run this process in backgroud (y/n)?: " back
 if [ "$back" == "y" ] || [ "$back" == "Y" ]; then
