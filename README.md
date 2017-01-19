@@ -1,3 +1,5 @@
+### This project is discontinued and obsolete, it may or may not work as expected. Use high performance applications such as httrack instead.
+
 # WebSiteCopier
 **************************************
 Shell script to copy an entire website
@@ -21,7 +23,7 @@ How To Use:
 
     Ex: ~/Downloads/New Site
 
-    ~/Downloads/"New Site" is invalid because qoetes aren't allowed.
+    ~/Downloads/"New Site" is invalid because quotes aren't allowed.
 
     4.verbose mode means it will show output in terminal or put a log in a file in wget-log in your home directory
 
