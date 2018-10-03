@@ -8,13 +8,13 @@
 Shell script to copy an entire website
 **************************************
 
-Install:
+Install
 --------
 
 1. You can simply run the script jsitecopy in terminal or install it by running install.sh. Installing it will enable it to be run from menu (Network category) with mouse click or from terminal just by entering "jsitecopy" without any path.
 2. Whether you run either of them , you first need to give them execution permission.
 
-How To Use:
+How To Use
 -----------
 
 1. Make sure the url contains the "www" term, otherwise it may download a single file and leave everything untouched.
